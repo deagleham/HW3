@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<!-- De'Ante Agleham -->
+<html>
+    <head>
+        <title>Cheesecake Order Form</title>
+        <link rel="stylesheet" type="text/css" href="stylesheets/agleham27.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="javascripts/agleham27.js"></script>
+    </head>
+    <body>
+        <title>Cheesecake Order Form</title>
+        <h1>Cheesecake Order Form</h1>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/9/9c/Mondays_at_Il_Forno_-_Cheesecake_with_strawberry_sauce.jpg" width="150" height="150">
+        <p>Quantity Topping</p>
+
+        <!-- Items to be hidden -->
+        <label class="hide">
+            <!-- Qantity selection -->
+            <select id="quantity">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select>
+
+            <!-- Flavor selection -->
+            <input type="radio" id="plain" name="flavor" value="Plain">
+            <label for="plain">Plain</label><br>
+            <input type="radio" id="cherry" name="flavor" value="Cherry">
+            <label for="cherry">Cherry</label><br>
+            <input type="radio" id="chocolate" name="flavor" value="Chocolate">
+            <label for="chocolate">Chocolate</label><br>
+            <label id="note" for="instructions">Notes:</label><br>
+
+            <textarea id="instructions">Enter any special instructions here</textarea><br>
+            
+            <button id="order">Order</button>
+        </label>
+        <h2>Orders for</h2>
+
+        <!-- Modified code from https://www.w3schools.com/howto/howto_css_dropdown.asp -->
+        <div class="dropdown">
+            <button class="dropbtn" value="jan">Jan</button>
+            <div class="dropdown-content">
+                <option class="month" value="jan">Jan</option>
+                <option class="month" value="feb">Feb</option>
+                <option class="month" value="mar">Mar</option>
+                <option class="month" value="apr">Apr</option>
+                <option class="month" value="may">May</option>
+                <option class="month" value="june">June</option>
+                <option class="month" value="july">July</option>
+                <option class="month" value="aug">Aug</option>
+                <option class="month" value="sept">Sept</option>
+                <option class="month" value="oct">Oct</option>
+                <option class="month" value="nov">Nov</option>
+                <option class="month" value="dec">Dec</option>
+            </div>
+          </div> 
+
+        <ul>
+            <li>11 cherry</li>
+            <li>17 chocolate</li>
+            <li>31 plain</li>
+        </ul>
+    </body>
+</html>
+
+
