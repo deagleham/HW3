@@ -1,3 +1,5 @@
+// De'Ante Agleham
+
 formHandler = function(event){
     var instr = document.getElementById("instructions").value;
     var key = "vegan"
