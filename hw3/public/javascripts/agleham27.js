@@ -1,14 +1,19 @@
 // De'Ante Agleham
+$(document).ready(function () {
+    // Form validation
+    $("#order").click(formHandler);
 
-formHandler = function(event){
+    // Changes text when a month is selected from dropdown
+    $(".month").on("click", textHandler);
+});
+
+formHandler = function(event) {
     var instr = document.getElementById("instructions").value;
-    var key = "vegan"
+    var key = "vegan";
     if (instr.match(key)) {
-        var warning = document.createTextNode(" Warning! Contains dairy.")
+        var warning = document.createTextNode(" Warning! Contains dairy.");
         $("#note").append(warning);
-    }
-    else {
-        // Checks which flavor is selected and returns selected value
+    } else {
         function getSelectedFlavor() {
             let flavors = document.getElementsByName('flavor');
             for (let i = 0; i < flavors.length; i++) {
@@ -30,19 +35,17 @@ formHandler = function(event){
     }
 }
 
-textHandler = function(event){
-    $(".month").on("click", function () {
-        var val = $(this).val();
-        var month = $(this).text();
-        $(".dropbtn").val(val);
-        $(".dropbtn").text(month);
+textHandler = function(event) {
+    var val = $(this).val();
+    var month = $(this).text();
+    $(".dropbtn").val(val);
+    $(".dropbtn").text(month);
+
+    $.post("/orders", { month: val }, function (data) {
+        var orderHTML = '';
+        data.data.forEach(function(order) {
+            orderHTML += '<p>' + order.topping + ': ' + order.quantity + '</p>';
+        });
+        $("#ordersJSON").html(orderHTML);
     });
 }
-
-$(document).ready(function () {
-    // Form validation
-    $("#order").click(formHandler);
-
-    // Changes text when month is selected from dropdown
-    $(".dropdown-content").click(textHandler);
-});
