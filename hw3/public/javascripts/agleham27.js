@@ -36,16 +36,33 @@ formHandler = function(event) {
 }
 
 textHandler = function(event) {
-    var val = $(this).val();
+    // Retrieve the value and text of the clicked option
+    var val = $(this).attr("value");
     var month = $(this).text();
-    $(".dropbtn").val(val);
+
+    // Update the dropdown button's value and text
+    $(".dropbtn").val(val); // This line updates the button's value
     $(".dropbtn").text(month);
 
+    console.log(val);
+    console.log(month);
+
+    // Make a POST request to the server with the selected month
     $.post("/orders", { month: val }, function (data) {
+        console.log("Server response:", data); // Debug log
+        console.log("Month to send to server:", val);
+
         var orderHTML = '';
+        
+        // Generate order details dynamically
         data.data.forEach(function(order) {
-            orderHTML += '<p>' + order.topping + ': ' + order.quantity + '</p>';
+            orderHTML += '<p>' + order.name + ': ' + order.quantity + ' (' + order.notes + ')</p>';
         });
+
+        // Update the orders section with the fetched data
         $("#ordersJSON").html(orderHTML);
+    }).fail(function() {
+        // Error handling
+        $("#ordersJSON").html("<p>Error fetching orders. Please try again.</p>");
     });
 }
