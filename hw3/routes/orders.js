@@ -2,7 +2,7 @@
 
 var express = require('express');
 var router = express.Router();
-var db = require('./dbms_promise.js'); // Import dbms_promise.js
+var db = require('./dbms_promise.js');
 
 /* POST orders */
 router.post('/', async function (req, res, next) {

@@ -7,7 +7,7 @@ $(document).ready(function () {
     $(".month").on("click", textHandler);
 });
 
-formHandler = function(event) {
+formHandler = function (event) {
     var instr = document.getElementById("instructions").value;
     var key = "vegan";
     if (instr.match(key)) {
@@ -25,15 +25,22 @@ formHandler = function(event) {
         }
 
         var topping = getSelectedFlavor();
+        var quantity = document.getElementById("quantity").value;
+
+        console.log("Sending data to server:", { topping: topping, quantity: quantity, instr: instr }); // Debugging
+        $.post("/neworders", { topping: topping, quantity: quantity, instr: instr }, function (data) {
+            console.log("Server response: ", data);
+            console.log("Order details to send to server: ", topping, quantity, instr);
+        });
 
         // Thank you message and order details
         $(".hide").hide();
         $("body").append("Thank you! Your order has been placed<br>");
         $("body").append("Topping: " + topping + "<br>");
-        $("body").append("Quantity: " + document.getElementById("quantity").value + "<br>");
+        $("body").append("Quantity: " + quantity + "<br>");
         $("body").append("Notes: " + instr);
     }
-}
+};
 
 textHandler = function(event) {
     // Retrieve the value and text of the clicked option
@@ -49,8 +56,8 @@ textHandler = function(event) {
 
     // Make a POST request to the server with the selected month
     $.post("/orders", { month: val }, function (data) {
-        console.log("Server response:", data); // Debug log
-        console.log("Month to send to server:", val);
+        console.log("Server response: ", data); // Debug log
+        console.log("Month to send to server: ", val);
 
         var orderHTML = '';
         
